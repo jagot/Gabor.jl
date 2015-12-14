@@ -15,7 +15,7 @@ function gabor{T}(t, f::Vector{T}, σ = 1.0, tol = 1e-5,
     w = wf(2Δi+1)
 
     nt = length(t)
-    G = zeros(Complex{T}, (2Δi+1, nt))
+    G = zeros(Complex{real(T)}, (2Δi+1, nt))
     for i = 1:nt
         sel = max(1,i-Δi):min(nt,i+Δi)
         G[:,i] = fftshift(fft(pad_zeros(exp(-(t[sel]-t[i]).^2/2(σ^2)).*f[sel], 2Δi+1).*w))
